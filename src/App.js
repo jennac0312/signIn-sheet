@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import SignInForm from './components/SignInForm'; 
+import List from './components/List';
+import AttendanceCount from './components/AttendanceCount';
+
+//if {} that means what we're importing is being destructured
 
 function App() {
+  // list of class
+  const [learners, setLearners] = useState([])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SignInForm setLearners={setLearners} learners={learners}/> {/* passing function as prop to be able to update learners inside component */}
+      {/* ListItem */}
+      <List learners={learners}/>
+      <AttendanceCount learners={learners} />
+
     </div>
   );
 }
